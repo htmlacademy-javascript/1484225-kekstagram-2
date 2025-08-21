@@ -1,0 +1,95 @@
+const MESSAGES = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
+];
+
+const NAMES = [
+  'Александр',
+  'Мария',
+  'Иван',
+  'Екатерина',
+  'Дмитрий',
+  'Анна',
+  'Сергей',
+  'Ольга',
+  'Андрей',
+  'Наталья',
+  'Владимир',
+  'Татьяна',
+  'Павел',
+  'Елена',
+  'Максим',
+  'Светлана',
+  'Кирилл',
+  'Юлия',
+  'Николай',
+  'Виктория'
+];
+
+const DESCRIPTION = [
+  'Закат над морем',
+  'Уютное кафе',
+  'Снежная гора',
+  'Город ночью',
+  'Песчаный пляж',
+  'Лесная тропинка',
+  'Старый мост',
+  'Утренняя роса',
+  'Парк осенью',
+  'Фонтан в центре',
+  'Полет птицы',
+  'Дождь за окном',
+  'Поле подсолнухов',
+  'Горный водопад',
+  'Уличный музыкант',
+  'Парусная лодка',
+  'Старинный замок',
+  'Озеро в горах',
+  'Фейерверк в небе',
+  'Цветущий сад',
+  'Деревня у реки',
+  'Светлый рассвет',
+  'Пустынная дорога',
+  'Гроза над полем',
+  'Туманное утро'
+];
+
+
+const getRandomInteger = (a, b) => {
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
+
+
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+const avatarId = getRandomInteger(1,6);
+let photoId = 1;
+let urlId = 1;
+let commentId = 1;
+
+
+
+const createPhoto = () => ({
+  id: photoId++,
+  url: `photos/${urlId++}.jpg`,
+  likes: getRandomInteger(1, 25),
+  description: getRandomArrayElement(DESCRIPTION),
+  comments: [
+    {
+      id: commentId++,
+      avatar: avatarId,
+      message: getRandomArrayElement(MESSAGES),
+      name: getRandomArrayElement(NAMES)
+    }
+  ]
+});
+
+const similarObjects = Array.from({length: 25}, createPhoto);
+
+console.log(similarObjects);
