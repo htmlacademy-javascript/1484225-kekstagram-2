@@ -1,18 +1,18 @@
-const stringLength = (myString, maxLength) => myString.length <= maxLength;
+// const stringLength = (myString, maxLength) => myString.length <= maxLength;
 
-console.log(stringLength('ololoolo', 5));
+// console.log(stringLength('ololoolo', 5));
 
 
-const polindromCheck = (myString) => {
-  const normalizeString = myString.toLowerCase().replaceAll(' ', '');
-  for (let i = 0; i < normalizeString.length; i++) {
-    if (normalizeString[i] !== normalizeString[normalizeString.length - 1 - i]) {
-      return false;
-    }
-  }
-  return true;
-}
-console.log(polindromCheck('Тор ттр оТ'));
+// const polindromCheck = (myString) => {
+//   const normalizeString = myString.toLowerCase().replaceAll(' ', '');
+//   for (let i = 0; i < normalizeString.length; i++) {
+//     if (normalizeString[i] !== normalizeString[normalizeString.length - 1 - i]) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+// console.log(polindromCheck('Тор ттр оТ'));
 
 
 // const ddddd = (myString) => {
@@ -20,3 +20,16 @@ console.log(polindromCheck('Тор ттр оТ'));
 //  return eeee;
 // }
 // console.log(ddddd('шалаш'));
+
+function timeToMinutes(timeString) {
+  const [hours, minutes] = timeString.split(':').map(Number);
+  return hours * 60 + minutes;
+}
+
+function meatingTime(workstart, workend, meatingstart, duration) {
+  const workEndMinutes = timeToMinutes(workend);
+  const meatingStartMinutes = timeToMinutes(meatingstart);
+
+  return meatingStartMinutes + duration <= workEndMinutes;
+}
+
